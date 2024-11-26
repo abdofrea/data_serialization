@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+message CDRsList {
+  repeated EventRecord eventRecords = 1;
+}
+
+message EventRecord {
+  oneof record {
+    CallDetailRecord callDetailRecord = 1;
+    // Placeholder for GPRS record if needed in the future
+  }
+}
+
+message CallDetailRecord {
+  enum RecordType {
+    VOICE = 0;
+    SMS = 1;
+  }
+
+  enum CallType {
+    INCOMING = 0;
+    OUTGOING = 1;
+  }
+
+  RecordType recordType = 1;         // Type of the record: voice or SMS
+  int64 recordID = 2;               // Unique ID for the CDR
+  string callingPartyNumber = 3;    // MSISDN of the calling party
+  string calledPartyNumber = 4;     // MSISDN of the called party
+  string callStartTime = 5;         // Start time of the call in ISO 8601 format
+  string callEndTime = 6;           // End time of the call in ISO 8601 format (optional)
+  int32 callDuration = 7;           // Duration of the call in seconds (optional)
+  CallType callType = 8;            // Incoming or outgoing call type
+  bool isRoaming = 9;               // Indicates if the call is roaming
+  string mscID = 10;                // ID of the MSC
+  LocationInfo locationInformation = 11; // Geographic location of the call (optional)
+}
+
+message LocationInfo {
+  int32 cellID = 1;                 // Cell tower ID (optional)
+  int32 locationAreaCode = 2;       // LAC of the cell tower (optional)
+  int32 mcc = 3;                    // Mobile Country Code (optional)
+  int32 mnc = 4;                    // Mobile Network Code (optional)
+}
