@@ -1,0 +1,116 @@
+{
+  "type": "record",
+  "name": "CallCDR",
+  "fields": [
+    {
+      "name": "CDRsList",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EventRecord",
+          "fields": [
+            {
+              "name": "callDetailRecord",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "CallDetailRecord",
+                  "fields": [
+                    {
+                      "name": "recordType",
+                      "type": {
+                        "type": "enum",
+                        "name": "RecordType",
+                        "symbols": ["voice", "sms"]
+                      }
+                    },
+                    {
+                      "name": "recordID",
+                      "type": "long"
+                    },
+                    {
+                      "name": "callingPartyNumber",
+                      "type": "string"
+                    },
+                    {
+                      "name": "calledPartyNumber",
+                      "type": "string"
+                    },
+                    {
+                      "name": "callStartTime",
+                      "type": "string",
+                      "logicalType": "timestamp-millis"
+                    },
+                    {
+                      "name": "callEndTime",
+                      "type": ["null", "string"],
+                      "logicalType": "timestamp-millis",
+                      "default": null
+                    },
+                    {
+                      "name": "callDuration",
+                      "type": ["null", "long"],
+                      "default": null
+                    },
+                    {
+                      "name": "callType",
+                      "type": {
+                        "type": "enum",
+                        "name": "CallType",
+                        "symbols": ["incoming", "outgoing"]
+                      }
+                    },
+                    {
+                      "name": "isRoaming",
+                      "type": "boolean"
+                    },
+                    {
+                      "name": "mscID",
+                      "type": "string"
+                    },
+                    {
+                      "name": "locationInformation",
+                      "type": [
+                        "null",
+                        {
+                          "type": "record",
+                          "name": "LocationInfo",
+                          "fields": [
+                            {
+                              "name": "cellID",
+                              "type": ["null", "long"],
+                              "default": null
+                            },
+                            {
+                              "name": "locationAreaCode",
+                              "type": ["null", "long"],
+                              "default": null
+                            },
+                            {
+                              "name": "mcc",
+                              "type": ["null", "long"],
+                              "default": null
+                            },
+                            {
+                              "name": "mnc",
+                              "type": ["null", "long"],
+                              "default": null
+                            }
+                          ]
+                        }
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

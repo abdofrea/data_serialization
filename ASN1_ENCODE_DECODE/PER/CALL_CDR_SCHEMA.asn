@@ -1,0 +1,35 @@
+CallCDR DEFINITIONS IMPLICIT TAGS ::= BEGIN
+	
+	CDRsList  ::= SEQUENCE OF EventRecord
+	
+	EventRecord ::= CHOICE {
+	callDetailRecord [0] CallDetailRecord
+	-- To be added GPRS record
+	}
+	
+    -- Main structure for a single Call Detail Record
+    CallDetailRecord ::= SEQUENCE {
+        recordType             [0] ENUMERATED {voice(0), sms(1)},
+        recordID               [1] INTEGER,              -- Unique ID for the CDR
+        callingPartyNumber     [2] VisibleString,        -- MSISDN of the calling party
+        calledPartyNumber      [3] VisibleString,        -- MSISDN of the called party
+        callStartTime          [4] GeneralizedTime,      -- Start time of the call
+        callEndTime            [5] GeneralizedTime OPTIONAL, -- End time of the calls
+        callDuration           [6] INTEGER OPTIONAL,     -- Duration of the call in seconds
+        callType               [7] ENUMERATED {incoming(0), outgoing(1)},
+        isRoaming       [8] BOOLEAN,              -- if the call is roaming
+        mscID      		[9] VisibleString,        -- ID of the MSC
+        locationInformation    [10] LocationInfo OPTIONAL -- Geographic location of the call
+    }
+
+    -- Nested structure for location information
+    LocationInfo ::= SEQUENCE {
+        cellID                 [0] INTEGER OPTIONAL,     -- Cell tower ID
+        locationAreaCode       [1] INTEGER OPTIONAL,     -- LAC of the cell tower
+        mcc                    [2] INTEGER OPTIONAL,     -- Mobile Country Code
+        mnc                    [3] INTEGER OPTIONAL      -- Mobile Network Code
+    }
+	
+	
+
+END
