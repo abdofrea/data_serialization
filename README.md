@@ -5,6 +5,8 @@ This Project is used to simulate the Data serialization process for encoding and
 - ASN.1 PER, BER.
 - Apache Avro.
 - Protocol Buffer.
+  
+
 This is part of the article (Telecom CDRs Data Serialization and Simulation).
 
 ## Requirment
