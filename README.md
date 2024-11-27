@@ -7,7 +7,7 @@ This Project is used to simulate the Data serialization process for encoding and
 - Protocol Buffer.
   
 
-This is part of the article (Telecom CDRs Data Serialization and Simulation).
+This is part of the article ([Telecom CDRs Data Serialization and Simulation](https://www.linkedin.com/pulse/telecom-cdrs-data-serialization-simulation-abdalwahed-frea-nxpdf/)).
 
 ## Requirment
 Each directory has it's own script for encoding and decoding and for more reference please chick the following libraries.
